@@ -1,0 +1,13 @@
+body {
+    background-color: #c7ebe9;
+}
+
+h1, .body-text {
+    background-color: white;
+}
+
+#wallpaper {
+    height: auto;
+    width: 198px;
+}
+
