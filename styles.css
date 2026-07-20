@@ -1,9 +1,37 @@
+* {
+    /* margin: 0px;
+    padding: 0px; */
+    box-sizing: border-box;
+}
 body {
     background-color: #c7ebe9;
+    font-family: "Trebuchet MS", sans-serif;
+    
 }
 
 h1, .body-text {
     background-color: white;
+    padding: 5px;
+    margin: 5px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+
+p {
+    margin-top: 0;
+}
+
+.square {
+    display: inline-block;
+    margin: 10px;
+    background-color: white;
+    padding: 15px;
+    max-width: 150px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 #wallpaper {
