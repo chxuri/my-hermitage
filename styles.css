@@ -5,7 +5,7 @@
 }
 body {
     background-color: #c7ebe9;
-    font-family: "Trebuchet MS", sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
     
 }
 
@@ -25,7 +25,8 @@ p {
 }
 
 .square {
-    display: inline-block;
+    /* display: inline-block; */
+    flex: auto;
     margin: 10px;
     background-color: white;
     padding: 15px;
@@ -34,8 +35,31 @@ p {
     border-radius: 10px;
 }
 
+.square p {
+    margin-top: 5px;
+}
+
+
 #wallpaper {
     height: auto;
     width: 198px;
 }
 
+.projects-container
+{
+    display: flex;
+}
+
+.rect {
+    width: 20px;
+    height: 30px;
+    background-color: white;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white;
+}
