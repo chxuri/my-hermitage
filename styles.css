@@ -50,16 +50,75 @@ p {
     display: flex;
 }
 
+header {
+    display: flex;
+    gap: 5px;
+}
+.shape {
+    flex: 0;
+}
+
+.rect.dark {
+    background-color: rgb(208 210 221);
+}
 .rect {
-    width: 20px;
-    height: 30px;
+    width: 30px;
+    height: 40px;
     background-color: white;
+    
+    
 }
 
 .triangle {
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
     border-top: 15px solid white;
+    
+
+}
+
+.triangle.dark {
+    border-top: 15px solid rgb(208 210 221);
+}
+
+.square.big {
+    /* align-items: center; */
+    /* width: 500px;
+    height: 500px; */
+    min-width: 200px;
+    max-height: 500px;
+    /* flex: 1 1 200px; */
+    max-width: 600px;
+    
+}
+.square.big p {
+    margin: 5px 5px;
+}
+
+#about-section {
+    display: block; 
+    /* max-height: 450px; */
+}
+
+.square img {
+    width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.pics .square {
+    display: inline-block; 
+    
+    max-width: none;
+}
+
+.pics {
+    display: block;
+    
+}
+
+.left {
+    float: left;
 }
