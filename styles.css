@@ -122,3 +122,37 @@ header {
 .left {
     float: left;
 }
+
+.both-sides {
+    display: flex;
+    justify-content: flex-start;
+    height: 75vh;
+}
+
+.left-side, .right-side {
+    background: white;
+    padding: 5px;
+    margin: 5px;
+}
+
+.left-side  {
+    max-width: 400px;
+    flex-grow: 1;
+}
+
+.right-side {
+    flex-grow: 2;
+}
+
+.left-side li{
+    list-style-type: circle;
+}
+
+h3 {
+    margin: 0;
+}
+
+#rage-body-p
+{
+    margin-bottom: 0;
+}
