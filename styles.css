@@ -1,3 +1,4 @@
+/*make the banner thingies have a margin. first one makes sense, but the last one always changes so idk*/
 * {
     /* margin: 0px;
     padding: 0px; */
@@ -155,4 +156,14 @@ h3 {
 #rage-body-p
 {
     margin-bottom: 0;
+}
+
+.greeting-container
+{
+    margin-top: 10px;
+    display: flex;
+}
+
+#greeting {
+    margin-left: 10px;
 }
