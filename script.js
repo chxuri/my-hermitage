@@ -3,6 +3,21 @@
 let name = "Rimma";
 let statement = `Good morning ${name}!`;
 
+const favFruits = ["grapes", "cherries", "bananas", "blueberries", "yellow dragonfruit"];
+
+for(const fruit of favFruits)
+{
+    console.log(fruit);
+}
+
+function bFruit(fruit)
+{
+    return fruit.startsWith("b");
+}
+
+const filtered = favFruits.filter(bFruit);
+console.log(filtered);
+
 console.log(statement);
 
 //can use || (truthy/falsy) or ?? (only for undefined/null)
@@ -18,18 +33,6 @@ function showMessage(name = "no name given")
 
 
 //try catch(e) console.log(e.message);
-
-
-//rock paper scissors logic:
-
-//create function that randomizes number 1 through 3
-//make variable for the random num
-
-//when function is called, store into computer choice variable
-//ask user for their choice in number
-//compare the choice against the computer
-//print win lose or tie message
-//ask if want to play again
 
 let humanScore = 0;
 let computerScore = 0;
@@ -104,4 +107,27 @@ function getHumanChoice()
     return prompt("Enter rock, paper, or scissors: ");
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()))
+function playGame()
+{
+    for(let i = 0; i < 5; i++)
+    {
+        console.log(playRound(getHumanChoice(), getComputerChoice()))
+    }
+    console.log("Human Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+
+    if(humanScore > computerScore)
+    {
+        console.log("You won!!!");
+    }
+    else if(humanScore === computerScore)
+    {
+        console.log("You tied!!!");
+    }
+    else 
+    {
+        console.log("You lost!!!")
+    }
+}
+
+//playGame();
