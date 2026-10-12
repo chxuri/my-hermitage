@@ -1,7 +1,17 @@
 "use strict";
 
+let container = document.querySelector(".body-text");
 let name = "Rimma";
+console.log(name);
 let statement = `Good morning ${name}!`;
+
+const div = document.createElement("div");
+
+div.textContent = name;
+
+container.appendChild(div);
+
+//use js to put banner on every page!!
 
 const favFruits = ["grapes", "cherries", "bananas", "blueberries", "yellow dragonfruit"];
 
@@ -10,12 +20,7 @@ for(const fruit of favFruits)
     console.log(fruit);
 }
 
-function bFruit(fruit)
-{
-    return fruit.startsWith("b");
-}
-
-const filtered = favFruits.filter(bFruit);
+const filtered = favFruits.filter((fruit) => fruit.startsWith("b"));
 console.log(filtered);
 
 console.log(statement);
