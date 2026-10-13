@@ -1,29 +1,220 @@
 "use strict";
 
-let container = document.querySelector(".body-text");
-let name = "Rimma";
-console.log(name);
-let statement = `Good morning ${name}!`;
+const banner = `<div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
 
-const div = document.createElement("div");
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="shape">
+            <div class="rect dark"></div>
+            <div class="triangle dark"></div>
+        </div>
+        <div class="shape">
+            <div class="rect"></div>
+            <div class="triangle"></div>
+        </div>`;
 
-div.textContent = name;
+document.querySelector("header").innerHTML = banner;
 
-container.appendChild(div);
+const nameInput = document.querySelector("#nameInput");
+const btn = document.querySelector("#nameButton");
+const messageSpace = document.querySelector("#funStatement");
+btn.onclick = () => messageSpace.textContent = `Hey ${nameInput.value}! How are u?`;
 
-//use js to put banner on every page!!
+btn.addEventListener("click", function (e) {
+  e.target.style.background = "rgb(187, 245, 169)";
 
-const favFruits = ["grapes", "cherries", "bananas", "blueberries", "yellow dragonfruit"];
+});
 
-for(const fruit of favFruits)
-{
-    console.log(fruit);
-}
+//make a lil game of values of like how are u ykwim
 
-const filtered = favFruits.filter((fruit) => fruit.startsWith("b"));
-console.log(filtered);
 
-console.log(statement);
+//container.appendChild(div);
+
 
 //can use || (truthy/falsy) or ?? (only for undefined/null)
 //make default parameter call a function that does smt funny?
