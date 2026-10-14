@@ -201,16 +201,36 @@ const banner = `<div class="shape">
 document.querySelector("header").innerHTML = banner;
 
 const nameInput = document.querySelector("#nameInput");
-const btn = document.querySelector("#nameButton");
+const nameBtn = document.querySelector("#nameButton");
 const messageSpace = document.querySelector("#funStatement");
-btn.onclick = () => messageSpace.textContent = `Hey ${nameInput.value}! How are u?`;
+nameBtn.onclick = gameQuestion;
 
-btn.addEventListener("click", function (e) {
+function gameQuestion() {
+    messageSpace.textContent = `Hey ${nameInput.value}! Do you want to play a game?`;
+    document.querySelector("#gameAnswer").style.display = "block";
+}
+nameBtn.addEventListener("click", function (e) {
   e.target.style.background = "rgb(187, 245, 169)";
 
 });
 
-//make a lil game of values of like how are u ykwim
+const yesBtn = document.querySelector("#yesBtn");
+const noBtn = document.querySelector("#noBtn");
+
+noBtn.onclick = noStatementOn;
+
+function noStatementOn() {
+    document.querySelector("#noContainer").style.display = "block";
+    document.querySelector("#gameInputContainer").style.display = "none";
+}
+
+yesBtn.onclick = gameRedirect;
+
+function gameRedirect() {
+    window.location.href="./tictactoe.html";
+}
+
+//tic tac toe game!!
 
 
 //container.appendChild(div);

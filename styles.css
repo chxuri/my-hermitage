@@ -36,8 +36,21 @@ p {
     border-radius: 10px;
 }
 
+
 .square p {
     margin-top: 5px;
+}
+
+
+#toeBoard .row{
+    display: flex;
+    justify-content: center;
+}
+.box {
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    margin: 25px;
 }
 
 
@@ -167,3 +180,9 @@ h3 {
 #greeting {
     margin-left: 10px;
 }
+
+
+#toeGameContainer {
+    height: 50vh;
+}
+
