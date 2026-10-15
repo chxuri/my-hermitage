@@ -230,7 +230,11 @@ function gameRedirect() {
     window.location.href="./tictactoe.html";
 }
 
-//tic tac toe game!!
+//troubleshoot this
+document.querySelector("#easy").addEventListener("click", function(e) {
+    e.target.style.background = "black";
+    console.log("clicked");
+});
 
 
 //container.appendChild(div);
