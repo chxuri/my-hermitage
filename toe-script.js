@@ -1,7 +1,7 @@
 
 let mode = "";
 let openSpaces = [
-    [true, true, true],
+    [false, true, true],
     [true, true, true],
     [true, true, true]
 ];
@@ -27,17 +27,89 @@ document.querySelector("#hard").addEventListener("click", function(e) {
     mode = "hard";
 });
 
-//make a game function that loops 
-//player gets to go first in easy mode
-//says your turn if player goes first
-//player gets to click on square
-//on top of square, theres image
-//array of potential open spaces gets marked with boolean false
+document.querySelector("#startButton").onclick = ticTacToe;
+
+
+//boolean for computer win vs human win? 
+//how to detect win? make conditionals for each direction
+//vertical, horizontal, diagonal
+//while game isn't won yet
+//take turns with machine
 
 function ticTacToe()
 {
-    if(mode === "easy")
+    if(!mode)
     {
-        
+        noModeSelected();
+    }
+    else if(mode === "easy")
+    {
+        easyMode();
+    }
+}
+
+function noModeSelected()
+{
+    const statement = document.createElement("p");
+    statement.id = "difficultyAlert";
+    statement.textContent = "Please select a difficulty first!";
+    document.querySelector("#toeNotification").appendChild(statement);
+}
+
+function easyMode()
+{
+    let winner = "none";
+    document.querySelector("#startButton").style.display = "none";
+    let alert = document.querySelector("#difficultyAlert");
+    if(alert)
+    {
+        alert.style.display = "none";
+    }
+    const statement = document.createElement("p");
+    statement.textContent = "Your turn!";
+    document.querySelector("#toeNotification").appendChild(statement);
+    
+    //while(winner === "none")
+    computerTurn();
+    playerTurn();
+}
+
+function playerTurn()
+{
+    for(let r = 0; r < 3; r++)
+    {
+        for(let c = 0; c < 3; c++)
+        {
+            let id = "box-" + r + "-" + c;
+            document.querySelector("#" + CSS.escape(id)).onclick = () => selectBox(r, c, "human");
+        }
+    }
+}
+
+
+function computerTurn()
+{
+    let possibleSpaceChoice = false;
+
+    while(!possibleSpaceChoice)
+    {
+        let randR = Math.floor(Math.random() * 3);
+        let randC = Math.floor(Math.random() * 3);
+        possibleSpaceChoice = selectBox(randR, randC, "computer");
+    }
+}
+
+function selectBox(r, c, player)
+{
+    if(openSpaces[r][c])
+    {
+        //box selectable
+        //draw custom tomato for the image
+        console.log("box selectable!");
+    }
+    else if(player === "computer" && !openSpaces[r][c])
+    {
+        console.log("box not selectable");
+        return false;
     }
 }
