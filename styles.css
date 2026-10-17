@@ -78,6 +78,10 @@ p {
     align-items: center;
 }
 
+#toeNotification {
+    padding: 15px 5px;
+}
+
 #wallpaper {
     height: auto;
     width: 198px;

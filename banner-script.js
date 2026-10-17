@@ -1,4 +1,4 @@
-        <div class="shape">
+const banner = `<div class="shape">
             <div class="rect"></div>
             <div class="triangle"></div>
         </div>
@@ -194,4 +194,6 @@
         <div class="shape">
             <div class="rect"></div>
             <div class="triangle"></div>
-        </div>
+        </div>`;
+
+document.querySelector("header").innerHTML = banner;

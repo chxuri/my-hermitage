@@ -1,240 +1,49 @@
 "use strict";
 
-const banner = `<div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="shape">
-            <div class="rect dark"></div>
-            <div class="triangle dark"></div>
-        </div>
-        <div class="shape">
-            <div class="rect"></div>
-            <div class="triangle"></div>
-        </div>`;
-
-document.querySelector("header").innerHTML = banner;
-
 const nameInput = document.querySelector("#nameInput");
 const nameBtn = document.querySelector("#nameButton");
 const messageSpace = document.querySelector("#funStatement");
-nameBtn.onclick = gameQuestion;
+
+
 
 function gameQuestion() {
     messageSpace.textContent = `Hey ${nameInput.value}! Do you want to play a game?`;
     document.querySelector("#gameAnswer").style.display = "block";
 }
-nameBtn.addEventListener("click", function (e) {
-  e.target.style.background = "rgb(187, 245, 169)";
 
-});
+if(nameBtn)
+{
+    nameBtn.onclick = gameQuestion;
+    nameBtn.addEventListener("click", function (e) {
+        e.target.style.background = "rgb(187, 245, 169)";
+
+        });
+}
+
+
+
 
 const yesBtn = document.querySelector("#yesBtn");
 const noBtn = document.querySelector("#noBtn");
 
-noBtn.onclick = noStatementOn;
+if(noBtn)
+{
+    noBtn.onclick = noStatementOn;
 
-function noStatementOn() {
-    document.querySelector("#noContainer").style.display = "block";
-    document.querySelector("#gameInputContainer").style.display = "none";
+    function noStatementOn() {
+        document.querySelector("#noContainer").style.display = "block";
+        document.querySelector("#gameInputContainer").style.display = "none";
+    }
 }
 
-yesBtn.onclick = gameRedirect;
+if(yesBtn)
+{
+    yesBtn.onclick = gameRedirect;
 
-function gameRedirect() {
-    window.location.href="./tictactoe.html";
+    function gameRedirect() {
+        window.location.href="./tictactoe.html";
+    }
 }
-
-//troubleshoot this
-document.querySelector("#easy").addEventListener("click", function(e) {
-    e.target.style.background = "black";
-    console.log("clicked");
-});
 
 
 //container.appendChild(div);
