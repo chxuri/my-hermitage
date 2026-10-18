@@ -1,8 +1,11 @@
 
 "use strict";
 let mode = "";
+let player = "human";
+let waitNextTurn = false;
+
 let openSpaces = [
-    [false, true, true],
+    [true, true, true],
     [true, true, true],
     [true, true, true]
 ];
@@ -76,33 +79,46 @@ function noModeSelected()
 
 function easyMode()
 {
-    let player = "human";
     let winner = "none";
+    
     document.querySelector("#startButton").style.display = "none";
     let alert = document.querySelector("#difficultyAlert");
     if(alert)
     {
         alert.style.display = "none";
     }
+    
     const statement = document.createElement("p");
     statement.textContent = "Your turn!";
     document.querySelector("#toeNotification").appendChild(statement);
     
-    while(winner === "none")
-    {
-        if(player === "human")
-        {
-            playerTurn();
-        }
-        else if(player === "computer")
-        {
-            computerTurn();
-        }
-
-        checkWin();
-
+    
+    if(player === "human")
+    {   
+        playerTurn();
+        
     }
+    else if(player === "computer")
+    {
+        computerTurn();
+    }
+    console.log("player: " +player)
+    winner = checkWin();
    
+}
+
+function getPlayerTurn()
+{
+    return new Promise(function(resolve) {
+        resolve(playerTurn());
+    });
+}
+
+async function awaitPlayerTurn()
+{
+    console.log("fetching!");
+    let playerTurn = await getPlayerTurn();
+    player = "computer";
 }
 
 function playerTurn()
@@ -112,7 +128,18 @@ function playerTurn()
         for(let c = 0; c < 3; c++)
         {
             let id = "box-" + r + "-" + c;
-            document.querySelector("#" + CSS.escape(id)).onclick = () => selectBox(r, c, "human");
+            document.querySelector("#" + CSS.escape(id)).addEventListener("click", function(e)
+            {
+                selectBox(r, c, "human");
+                //waitNextTurn = false;
+                let winner = checkWin();
+                if(winner === "human")
+                {
+                    console.log("human won!");
+                    return;
+                }
+                computerTurn();
+            });
         }
     }
 }
@@ -123,15 +150,29 @@ function computerTurn()
     let possibleSpaceChoice = false;
     let randR = 0;
     let randC = 0;
-    while(!possibleSpaceChoice)
+    let loopNum = 0;
+    while(!possibleSpaceChoice && loopNum < 5)
     {
         randR = Math.floor(Math.random() * 3);
         randC = Math.floor(Math.random() * 3);
+        console.log("checking possibleSpacechoice")
+        console.log("RandR: " + randR);
+        console.log("RandC: " + randC);
         possibleSpaceChoice = selectBox(randR, randC, "computer");
+        loopNum++;
     }
 
     takenSpaces[randR][randC] = "computer";
-    addImage("cat", r, c);
+    addImage("cat", randR, randC);
+    player = "human";
+    let winner = checkWin();
+
+    if(winner === "computer")
+    {
+        console.log("computer won!");
+        return;
+    }
+    playerTurn();
 
 }
 
@@ -145,6 +186,10 @@ function selectBox(r, c, player)
     else if(player === "computer" && !openSpaces[r][c])
     {
         return false;
+    }
+    else if(player === "compuer")
+    {
+        return true;
     }
 }
 
@@ -170,17 +215,19 @@ function addImage(icon, r, c)
 function checkWin()
 {
     //check human win and check computer win
-    
-    let humanHorizontalWin = false;
-    let humanVerticalWin = false;
-    let humanLeftDiagonalWin = false;
-    let humanRightDiagonalWin = false;
-    //dunno what i was doing here ^
-    //maybe reduce to just one variabel that checks win??
+    let humanWin = false;
 
     let humanHorizontals = 0;
+    let humanVerticals = 0;
+    let humanLeftDiagonals = 0;
+    let humanRightDiagonals = 0;
     
     let computerWin = false;
+
+    let computerHorizontals = 0;
+    let computerVerticals = 0;
+    let computerLeftDiagonals = 0;
+    let computerRightDiagonals = 0;
     
     //continue doing this for vertical and diagonal!
     for(let r = 0; r < 3; r++)
@@ -191,12 +238,103 @@ function checkWin()
             {
                 humanHorizontals++;
             }
+            else if(takenSpaces[r][c] === "computer")
+            {
+                computerHorizontals++;
+            }
         }
 
         if(humanHorizontals === 3)
         {
-            humanHorizontalWin = true;
+            humanWin = true;
+        }
+        if(computerHorizontals === 3)
+        {
+            computerWin = true;
         }
         humanHorizontals = 0;
+        computerHorizontals = 0;
     }
+
+    for(let c = 0; c < 3; c++)
+    {
+        for(let r = 0; r < 3; r++)
+        {
+            if(takenSpaces[r][c] === "human")
+            {
+                humanVerticals++;
+            }
+            else if(takenSpaces[r][c] === "computer")
+            {
+                computerVerticals++;
+            }
+        }
+
+        if(humanVerticals === 3)
+        {
+            humanWin = true;
+        }
+        if(computerVerticals === 3)
+        {
+            computerWin = true;
+        }
+        humanVerticals = 0;
+        computerVerticals = 0;
+    }
+
+    let leftI = 0;
+    let rightI = 2;
+
+    while (leftI < 3)
+    {
+        if(takenSpaces[leftI][leftI] === "human")
+        {
+            humanLeftDiagonals++;
+        }
+        else if(takenSpaces[leftI][leftI] === "computer")
+        {
+            computerLeftDiagonals++;
+        }
+        leftI++;
+    }
+
+    while(rightI >= 0)
+    {
+        if(takenSpaces[rightI][rightI] === "human")
+        {
+            humanRightDiagonals++;
+        }
+        else if(takenSpaces[rightI][rightI] === "computer")
+        {
+            computerRightDiagonals++;
+        }
+        rightI--;
+    }
+
+    if(humanRightDiagonals === 3 || humanLeftDiagonals === 3)
+    {
+        humanWin = true;
+    }
+
+    if(computerRightDiagonals === 3 || computerLeftDiagonals === 3)
+    {
+        humanWin = true;
+    }
+
+    if(humanWin)
+    {
+        return "human";
+    }
+    else if(computerWin)
+    {
+        return "computer";
+    }
+    else 
+    {
+        return "none";
+    }
+
+    console.log("checking wins");
+
+
 }
