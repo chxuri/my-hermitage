@@ -1,7 +1,7 @@
 
 "use strict";
 let mode = "";
-let player = "human";
+let currentPlayer = "human";
 let waitNextTurn = false;
 
 let openSpaces = [
@@ -93,16 +93,9 @@ function easyMode()
     document.querySelector("#toeNotification").appendChild(statement);
     
     
-    if(player === "human")
-    {   
-        playerTurn();
-        
-    }
-    else if(player === "computer")
-    {
-        computerTurn();
-    }
-    console.log("player: " +player)
+
+    playerTurn();
+    console.log("player: " + currentPlayer)
     winner = checkWin();
    
 }
@@ -118,27 +111,35 @@ async function awaitPlayerTurn()
 {
     console.log("fetching!");
     let playerTurn = await getPlayerTurn();
-    player = "computer";
+    currentPlayer = "computer";
 }
 
 function playerTurn()
 {
+    let numClicks = 0;
+    console.log("player turn!");
     for(let r = 0; r < 3; r++)
     {
         for(let c = 0; c < 3; c++)
         {
             let id = "box-" + r + "-" + c;
+            
             document.querySelector("#" + CSS.escape(id)).addEventListener("click", function(e)
             {
-                selectBox(r, c, "human");
-                //waitNextTurn = false;
-                let winner = checkWin();
-                if(winner === "human")
+                if(numClicks === 0)
                 {
-                    console.log("human won!");
-                    return;
+                    console.log("numClicks" + numClicks)
+                    selectBox(r, c, "human");
+                    //waitNextTurn = false;
+                    let winner = checkWin();
+                    if(winner === "human")
+                    {
+                        console.log("human won!");
+                        return;
+                    }
+                    setTimeout(computerTurn, 1500);
                 }
-                computerTurn();
+                numClicks++;
             });
         }
     }
@@ -150,8 +151,7 @@ function computerTurn()
     let possibleSpaceChoice = false;
     let randR = 0;
     let randC = 0;
-    let loopNum = 0;
-    while(!possibleSpaceChoice && loopNum < 5)
+    while(!possibleSpaceChoice)
     {
         randR = Math.floor(Math.random() * 3);
         randC = Math.floor(Math.random() * 3);
@@ -159,12 +159,12 @@ function computerTurn()
         console.log("RandR: " + randR);
         console.log("RandC: " + randC);
         possibleSpaceChoice = selectBox(randR, randC, "computer");
-        loopNum++;
     }
 
+    openSpaces[randR][randC] = false;
     takenSpaces[randR][randC] = "computer";
     addImage("cat", randR, randC);
-    player = "human";
+    currentPlayer = "human";
     let winner = checkWin();
 
     if(winner === "computer")
@@ -172,23 +172,26 @@ function computerTurn()
         console.log("computer won!");
         return;
     }
-    playerTurn();
+    setTimeout(playerTurn, 1500);
 
 }
 
 function selectBox(r, c, player)
 {
-    if(openSpaces[r][c])
+    if(openSpaces[r][c] && player === "human")
     {
         takenSpaces[r][c] = "human";
+        openSpaces[r][c] = false;
         addImage("duck", r, c);
     }
     else if(player === "computer" && !openSpaces[r][c])
     {
+        console.log("comp and closed");
         return false;
     }
-    else if(player === "compuer")
+    else if(player === "computer")
     {
+        console.log("comp and open");
         return true;
     }
 }
@@ -200,8 +203,7 @@ function addImage(icon, r, c)
     if(icon === "cat")
     {
         fullBoxId.style.backgroundImage = "url('../images/transparent-cat.PNG')";
-        fullBoxId.style.backgroundSize = "120px";
-        
+        fullBoxId.style.backgroundSize = "120px"; 
     }
     else 
     {
@@ -321,6 +323,7 @@ function checkWin()
         humanWin = true;
     }
 
+    console.log("checking wins");
     if(humanWin)
     {
         return "human";
@@ -333,8 +336,6 @@ function checkWin()
     {
         return "none";
     }
-
-    console.log("checking wins");
 
 
 }
