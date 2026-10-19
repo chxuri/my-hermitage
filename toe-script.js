@@ -137,7 +137,7 @@ function playerTurn()
                         console.log("human won!");
                         return;
                     }
-                    setTimeout(computerTurn, 1500);
+                    setTimeout(computerTurn, 1000);
                 }
                 numClicks++;
             });
@@ -172,7 +172,7 @@ function computerTurn()
         console.log("computer won!");
         return;
     }
-    setTimeout(playerTurn, 1500);
+    setTimeout(playerTurn, 1000);
 
 }
 
@@ -285,7 +285,9 @@ function checkWin()
     }
 
     let leftI = 0;
-    let rightI = 2;
+    
+    let rightR = 0;
+    let rightC = 2;
 
     while (leftI < 3)
     {
@@ -300,17 +302,18 @@ function checkWin()
         leftI++;
     }
 
-    while(rightI >= 0)
+    while(rightC >= 0)
     {
-        if(takenSpaces[rightI][rightI] === "human")
+        if(takenSpaces[rightR][rightC] === "human")
         {
             humanRightDiagonals++;
         }
-        else if(takenSpaces[rightI][rightI] === "computer")
+        else if(takenSpaces[rightR][rightC] === "computer")
         {
             computerRightDiagonals++;
         }
-        rightI--;
+        rightR++;
+        rightC--;
     }
 
     if(humanRightDiagonals === 3 || humanLeftDiagonals === 3)
@@ -320,16 +323,18 @@ function checkWin()
 
     if(computerRightDiagonals === 3 || computerLeftDiagonals === 3)
     {
-        humanWin = true;
+        computerWin = true;
     }
 
     console.log("checking wins");
     if(humanWin)
     {
+        setTimeout(displayWin, 500);
         return "human";
     }
     else if(computerWin)
     {
+        setTimeout(displayLoss, 500);
         return "computer";
     }
     else 
@@ -338,4 +343,22 @@ function checkWin()
     }
 
 
+}
+
+function displayWin()
+{
+    let message = document.createElement("p");
+    message.textContent = "Congrats!! You won!!";
+    document.querySelector("#winScreen").prepend(message);
+    document.querySelector("#winScreen").style.display = "flex";
+    document.querySelector("#exitWin").onclick = () => document.querySelector("#winScreen").style.display = "none";
+}
+
+function displayLoss()
+{
+    let message = document.createElement("p");
+    message.textContent = "HAHA YOU LOST!";
+    document.querySelector("#winScreen").prepend(message);
+    document.querySelector("#winScreen").style.display = "flex";
+    document.querySelector("#exitWin").onclick = () => document.querySelector("#winScreen").style.display = "none";
 }
