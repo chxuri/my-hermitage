@@ -1,0 +1,67 @@
+
+
+#headerPattern {
+    display: flex;
+    gap: 5px;
+}
+.shape {
+    flex: 0;
+}
+
+.rect.dark {
+    background-color: rgb(208 210 221);
+}
+.rect {
+    width: 30px;
+    height: 40px;
+    background-color: white;
+    
+    
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid white;
+    
+
+}
+
+.triangle.dark {
+    border-top: 15px solid rgb(208 210 221);
+}
+
+* {
+    /* margin: 0px;
+    padding: 0px; */
+    box-sizing: border-box;
+}
+body {
+    background-color: #c7ebe9;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.line {
+    margin-top: -5px;
+    margin-left: 13.5px;
+    width: 3px;
+    height: 15px;
+    background-color: white;
+}
+
+.sign {
+    width: 143px;
+    height: 40px;
+    background-color: white;
+    flex-shrink: 0;
+    margin-left: 13.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#signContainer {
+    display: block;
+}
